@@ -1,0 +1,58 @@
+/* Hexagon styles */
+.hexagon {
+    width: 60px;
+    height: 34.64px;
+    background-color: rgba(99, 102, 241, 0.3);
+    position: relative;
+    display: inline-block;
+    margin: 19.32px 1px;
+  }
+  
+  .hexagon:before,
+  .hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+  }
+  
+  .hexagon:before {
+    bottom: 100%;
+    border-bottom: 17.32px solid rgba(99, 102, 241, 0.3);
+  }
+  
+  .hexagon:after {
+    top: 100%;
+    border-top: 17.32px solid rgba(99, 102, 241, 0.3);
+  }
+  
+  .hexagon-main {
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  
+  .hexagon-inner {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  
+  .hex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 360px;
+    margin: 0 auto;
+    transform: translateY(-50px);
+  }
+  
+  /* Scanning animation */
+  @keyframes scan {
+    0% { top: 0%; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  
+  /* Hexagon main animation */
+  .hexagon-main {
+    transition: all 0.3s ease;
+  }

@@ -1,0 +1,1229 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Add this to your CSS file to improve performance */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Add will-change hints for better performance */
+.project-card,
+.skill-item,
+.experience-item,
+.cursor-highlight,
+.draggable-item,
+.sun,
+.moon,
+.star,
+.cloud {
+  will-change: transform, opacity;
+}
+
+/* Improve scrolling performance */
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* Force hardware acceleration for smoother animations */
+.hardware-accelerated,
+.sun,
+.moon,
+.star,
+.cloud {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Ensure content is visible by default */
+.skill-item,
+.project-card,
+.experience-item,
+.contact-input,
+.social-icon,
+.footer-link {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Custom smooth scroll styles */
+.smooth-scroll {
+  position: relative;
+  will-change: transform;
+}
+
+/* Draggable styles */
+.draggable-item {
+  touch-action: none;
+  user-select: none;
+}
+
+/* Morph animation styles */
+.morph-element {
+  transform-origin: center;
+  will-change: transform, d, cx, cy, x, y, r, width, height, fill;
+}
+
+/* Text color in light mode */
+:root {
+  --text-color: #000000;
+}
+
+.dark {
+  --text-color: #ffffff;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a {
+  color: var(--text-color);
+}
+
+.dark p,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark span,
+.dark a {
+  color: var(--foreground);
+}
+
+/* Day/Night animation styles */
+.sun {
+  position: relative;
+  overflow: visible;
+}
+
+.moon {
+  position: relative;
+  overflow: visible;
+}
+
+.star {
+  will-change: opacity, transform;
+}
+
+.cloud {
+  will-change: transform;
+  filter: blur(2px);
+}
+
+/* Hover highlight effects */
+.hover-highlight {
+  transition: all 0.3s ease;
+}
+
+.hover-highlight:hover {
+  text-shadow: 0 0 8px rgba(var(--primary), 0.5);
+  transform: scale(1.05);
+}
+
+/* Add these styles to your index.css file */
+
+/* Fix for tree positioning */
+.left-1\/6 {
+  left: 16.666667%;
+}
+
+.right-1\/6 {
+  right: 16.666667%;
+}
+
+.left-1\/5 {
+  left: 20%;
+}
+
+/* Tree sizes */
+.w-18 {
+  width: 4.5rem;
+}
+
+.h-22 {
+  height: 5.5rem;
+}
+
+/* Add these styles to your index.css file for the new themes */
+
+/* Rain theme styles */
+.rain .raindrop {
+  will-change: transform, opacity;
+}
+
+/* Snowfall theme styles */
+.snowfall .snowflake {
+  will-change: transform, opacity, rotation;
+}
+
+/* Fix for cloud positioning */
+.left-1\/5 {
+  left: 20%;
+}
+
+/* Theme-specific text colors */
+.rain p,
+.rain h1,
+.rain h2,
+.rain h3,
+.rain h4,
+.rain h5,
+.rain span,
+.rain a {
+  color: var(--foreground);
+}
+
+.snowfall p,
+.snowfall h1,
+.snowfall h2,
+.snowfall h3,
+.snowfall h4,
+.snowfall h5,
+.snowfall span,
+.snowfall a {
+  color: var(--text-color);
+}
+
+/* Add these styles to your index.css file */
+
+/* Cloud positioning */
+.left-1\/5 {
+  left: 20%;
+}
+
+.left-18 {
+  left: 4.5rem;
+}
+
+/* Ensure sun and moon are properly styled */
+.sun-icon,
+.moon-icon {
+  will-change: transform, opacity;
+}
+
+/* Enhance cloud animations */
+.cloud-icon {
+  will-change: transform;
+  filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.3));
+}
+
+/* Enhance weather animations */
+.raindrop {
+  will-change: transform, opacity;
+}
+
+.snowflake {
+  will-change: transform, opacity, rotation;
+}
+
+/* Enhance snowfall animation */
+.snowflake {
+  will-change: transform, opacity, rotation;
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+/* Wet text effect for rain theme */
+.rain .hero-text {
+  position: relative;
+  text-shadow: 0 0 5px rgba(0, 150, 255, 0.8), 0 0 10px rgba(0, 150, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Snow on text effect for snowfall theme */
+.snowfall .hero-text {
+  position: relative;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(200, 235, 255, 0.6);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Update the lightning bolt styles in your CSS file to make them more visible */
+.lightning-bolt {
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.9));
+  color: #ffeb3b;
+  text-shadow: 0 0 20px rgba(255, 255, 0, 0.9), 0 0 40px rgba(255, 255, 0, 0.7);
+  pointer-events: none;
+  z-index: 30;
+  font-size: 7rem;
+  will-change: transform, opacity;
+}
+
+/* Hero card styles */
+.hero-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure proper text colors */
+.light {
+  --text-color: #000000;
+}
+
+.dark {
+  --text-color: #ffffff;
+}
+
+/* Make sure text colors are properly applied */
+.light p,
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6,
+.light span,
+.light a:not(.text-primary):not([class*="text-"]) {
+  color: var(--text-color);
+}
+
+.dark p,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark span,
+.dark a:not(.text-primary):not([class*="text-"]) {
+  color: var(--text-color);
+}
+
+/* Chat bot styles */
+.chat-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  max-width: 90vw;
+  height: 450px;
+  max-height: 70vh;
+  background-color: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+}
+
+.chat-header {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.message-user {
+  align-self: flex-end;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-bottom-right-radius: 4px;
+}
+
+.message-bot {
+  align-self: flex-start;
+  background-color: var(--muted);
+  color: var(--foreground);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-input {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.chat-input button {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chat-input button:hover {
+  transform: scale(1.05);
+  background-color: var(--primary);
+}
+
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  background-color: var(--muted);
+  border-radius: 18px;
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  width: fit-content;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  animation: typingBounce 1s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Add these styles to ensure section headings are visible */
+
+.main-title,
+.subtitle,
+.decorative-line,
+.decorative-dot {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure section headings are properly displayed */
+.scroll-animation-wrapper .scroll-animation-content {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Fix for section headings in dark mode */
+.dark .main-title,
+.dark .subtitle {
+  color: var(--foreground);
+}
+
+/* Ensure proper text colors for section headings */
+.section-heading h2,
+.section-heading p {
+  color: var(--foreground);
+}
+
+/* Override any animations that might hide section headings */
+@media (prefers-reduced-motion: reduce) {
+  .main-title,
+  .subtitle,
+  .decorative-line,
+  .decorative-dot,
+  .scroll-animation-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
+
+/* Add these styles to your index.css file */
+
+/* 3D cube styles */
+.preserve-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Voice particles animation */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.float-particle {
+  animation: float-up 3s ease-out forwards;
+}
+
+/* Drawing canvas styles */
+canvas {
+  touch-action: none;
+}
+
+/* Game target styles */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.game-target {
+  animation: pulse 2s infinite;
+}
+
+/* Ensure proper z-index for draggable items */
+.draggable-item {
+  z-index: 10;
+}
+
+/* Force visibility for Experience section */
+#experience,
+#experience *,
+.timeline-line,
+.timeline-dot,
+.highlight-item {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure z-index is high enough */
+#experience {
+  z-index: 10;
+  position: relative;
+}
+
+/* Ensure timeline line is visible */
+.timeline-line {
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: 100% !important;
+  transform: none !important;
+  display: block !important;
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 2px !important; /* Slightly thicker for better visibility */
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--primary)),
+    transparent
+  ) !important;
+  z-index: 5 !important;
+}
+
+/* Fix timeline dots positioning */
+.timeline-dot {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  position: absolute !important;
+  top: 6px !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background-color: hsl(var(--primary)) !important;
+  border: 4px solid hsl(var(--card)) !important;
+  z-index: 10 !important;
+  transform: scale(1) !important;
+}
+
+/* Responsive timeline adjustments */
+@media (max-width: 767px) {
+  .timeline-line {
+    left: 4px !important;
+    transform: none !important;
+  }
+
+  #experience .group {
+    padding-left: 12px !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .timeline-dot {
+    left: 4px !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .timeline-line {
+    left: 6px !important;
+  }
+
+  .timeline-dot {
+    left: 6px !important;
+  }
+}
+
+/* Adjust dot positioning for different screen sizes */
+@media (min-width: 768px) {
+  .timeline-dot {
+    right: 0 !important;
+    transform: translateX(50%) !important;
+  }
+
+  .group:nth-child(odd) .timeline-dot {
+    right: 0 !important;
+    left: auto !important;
+    transform: translateX(50%) !important;
+  }
+
+  .group:nth-child(even) .timeline-dot {
+    left: 0 !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Ensure the timeline container has proper positioning */
+#experience .relative.mt-16 {
+  position: relative !important;
+  min-height: 200px !important;
+}
+
+/* Enhanced hover effects for experience items */
+.experience-item .group {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-item:hover .group {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.experience-item:hover .timeline-dot {
+  transform: scale(1.5) !important;
+  filter: brightness(1.2);
+}
+
+.experience-item:hover h3 {
+  color: hsl(var(--primary));
+}
+
+/* Rainfall animation */
+@keyframes rainfall {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+
+.animate-rainfall {
+  animation-name: rainfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Lightning flash effect */
+.lightning-flash {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  opacity: 0;
+  z-index: 50;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.lightning-flash.active {
+  opacity: 0.8;
+  transition: opacity 0.1s ease-out;
+}
+
+/* Add these animations for the footer weather component */
+
+@keyframes footer-rainfall {
+  0% {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
+.animate-footer-rainfall {
+  animation-name: footer-rainfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes footer-snowfall {
+  0% {
+    transform: translateY(-5px) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-footer-snowfall {
+  animation-name: footer-snowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes footer-cloud {
+  0% {
+    transform: translateX(-30px);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100px);
+    opacity: 0.3;
+  }
+}
+
+.animate-footer-cloud {
+  animation-name: footer-cloud;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes footer-sun {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+.animate-footer-sun {
+  animation-name: footer-sun;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+}
+
+@keyframes footer-fog {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(50px);
+    opacity: 0.2;
+  }
+}
+
+.animate-footer-fog {
+  animation-name: footer-fog;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.me {
+  border-radius: 100%;
+  filter: drop-shadow(10px 7px 5px black);
+}
+
+/* NEW ADDITIONS FOR HERO LIGHTNING EFFECT */
+
+/* Hero Lightning Effect */
+.hero-lightning-flash {
+  position: fixed;
+  inset: 0;
+  background-color: white;
+  opacity: 0;
+  z-index: 999;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  transition: opacity 0.1s ease-out;
+}
+
+.hero-lightning-flash.active {
+  opacity: 0.8;
+}
+
+/* Add visible lightning bolt elements */
+.lightning-bolt-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.lightning-bolt-element {
+  position: absolute;
+  opacity: 0;
+  transform-origin: top center;
+  z-index: 100;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+.lightning-bolt-element svg {
+  width: 100%;
+  height: 100%;
+  stroke: #ffeb3b;
+  stroke-width: 2;
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+.lightning-bolt-element.active {
+  animation: lightning-appear 0.5s ease-out forwards;
+}
+
+@keyframes lightning-appear {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  5% {
+    opacity: 0.9;
+    transform: scaleY(1);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.6;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(1);
+  }
+}
+
+/* Lightning bolt variations */
+.lightning-bolt-1 {
+  clip-path: polygon(
+    50% 0%,
+    45% 30%,
+    60% 50%,
+    40% 60%,
+    55% 100%,
+    45% 85%,
+    30% 100%,
+    40% 70%,
+    25% 50%,
+    45% 40%
+  );
+}
+
+.lightning-bolt-2 {
+  clip-path: polygon(
+    50% 0%,
+    30% 30%,
+    50% 50%,
+    30% 70%,
+    50% 100%,
+    40% 70%,
+    60% 50%,
+    40% 30%
+  );
+}
+
+.lightning-bolt-3 {
+  clip-path: polygon(
+    50% 0%,
+    65% 40%,
+    50% 50%,
+    60% 100%,
+    45% 70%,
+    35% 90%,
+    40% 50%,
+    30% 40%
+  );
+}
+
+/* Lightning emoji style */
+.lightning-emoji {
+  position: absolute;
+  color: #ffeb3b;
+  font-size: 5rem;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.9),
+    0 0 40px rgba(255, 255, 0, 0.7);
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.lightning-emoji.active {
+  animation: lightning-emoji-flash 1s ease-out forwards;
+}
+
+@keyframes lightning-emoji-flash {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0) scale(1.2);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+    transform: translateY(0) scale(0.9);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+}
+
+/* IMPROVED EXPERIENCE SECTION RESPONSIVENESS */
+
+/* Make experience section more responsive */
+@media (max-width: 639px) {
+  #experience {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  #experience .group {
+    margin-bottom: 2rem;
+  }
+
+  #experience h3 {
+    font-size: 1.25rem;
+  }
+
+  #experience .highlight-item {
+    font-size: 0.75rem;
+  }
+
+  .timeline-dot {
+    width: 5px !important;
+    height: 5px !important;
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 640px) and (max-width: 767px) {
+  #experience .group {
+    padding-left: 2rem !important;
+  }
+
+  #experience .timeline-line {
+    left: 6px !important;
+  }
+}
+
+/* Mobile timeline layout */
+@media (max-width: 767px) {
+  #experience .timeline-line {
+    left: 4px !important;
+    transform: none !important;
+  }
+
+  #experience .group {
+    padding-left: 1.5rem !important;
+    width: 100% !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #experience .timeline-dot {
+    left: 4px !important;
+    transform: none !important;
+  }
+
+  #experience .group:nth-child(odd),
+  #experience .group:nth-child(even) {
+    text-align: left !important;
+    padding-right: 0 !important;
+    padding-left: 1.5rem !important;
+  }
+}
+
+/* Ensure text is properly sized on all devices */
+@media (max-width: 639px) {
+  #experience p {
+    font-size: 0.875rem;
+  }
+
+  #experience .highlight-item {
+    gap: 0.25rem;
+  }
+
+  #experience .highlight-item svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-top: 0.25rem;
+  }
+}
+
+/* Footer weather responsiveness */
+@media (max-width: 639px) {
+  .footer-weather-container {
+    padding: 0.5rem;
+  }
+}
