@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, X, MessageSquare, Bot, Loader2, WifiOff } from "lucide-react";
+import { Send, X, MessageSquare, Bot, WifiOff } from "lucide-react";
 
 interface Message {
   id: string;
@@ -25,7 +25,6 @@ const AichatBot = () => {
   const systemPrompt = `You are Abhay Krishnan, a friendly and professional front-end developer. 
   Answer questions about your skills, experience, and projects based on portfolio content.
   Keep responses concise (1-2 sentences) and professional but friendly.`;
-  const apiKey = import.meta.env.VITE_OPENAI_KEY;
   // Check initial connection
   useEffect(() => {
     const checkConnection = async () => {

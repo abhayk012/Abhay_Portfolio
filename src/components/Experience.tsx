@@ -248,7 +248,7 @@ const Experience = () => {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              ref={(el) => (experienceItems.current[index] = el)}
+              ref={(el) => {experienceItems.current[index] = el}}
               className={`relative mb-12 sm:mb-16 group ${
                 index % 2 === 0
                   ? "md:pr-16 md:text-right md:ml-auto"

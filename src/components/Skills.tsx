@@ -38,7 +38,7 @@ gsap.registerPlugin(ScrollTrigger, Observer);
 
 interface Skill {
   name: string;
-  icon: JSX.Element;
+  icon: any;
   color: string;
   category: string;
   proficiency: number; // 1-5 scale
@@ -159,7 +159,7 @@ const Skills = () => {
     },
     {
       name: "VS Code",
-      icon: <BiLogoVisualStudio  />,
+      icon: <BiLogoVisualStudio />,
       color: "#007ACC",
       category: "Tools",
       proficiency: 5,
@@ -248,10 +248,12 @@ const Skills = () => {
       const categoryButtons =
         categoriesRef.current?.querySelectorAll(".category-btn") || [];
       categoryButtons.forEach((button: Element) => {
-        button.addEventListener("mousemove", (e) => {
+        button.addEventListener("mousemove", (e: Event) => {
+          // Fix: Cast the event to MouseEvent to access clientX and clientY
+          const mouseEvent = e as MouseEvent;
           const rect = (e.target as HTMLElement).getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
+          const x = mouseEvent.clientX - rect.left;
+          const y = mouseEvent.clientY - rect.top;
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
           const angle = (Math.atan2(y - centerY, x - centerX) * 180) / Math.PI;
@@ -326,7 +328,7 @@ const Skills = () => {
               y: Math.random() * 100 - 50,
               transition: {
                 duration: Math.random() * 10 + 10,
-                repeat: Infinity,
+                repeat: Number.POSITIVE_INFINITY,
                 repeatType: "reverse",
                 ease: "linear",
               },

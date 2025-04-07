@@ -87,7 +87,7 @@ const About = () => {
       // Set up animations for image and content
       gsap.set([image, content], {
         opacity: 0,
-        x: (el) => (el === image ? -50 : 50),
+        x: (_i, el: HTMLElement) => (el === image ? -50 : 50),
       });
 
       // Create ScrollTrigger for image

@@ -37,7 +37,7 @@ const WeatherSection = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [locationName, setLocationName] = useState<string>("")
+  // const [locationName, setLocationName] = useState<string>("")
   const [showLightning, setShowLightning] = useState(false)
   const lightningTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const weatherContainerRef = useRef<HTMLDivElement>(null)
@@ -62,7 +62,7 @@ const WeatherSection = () => {
           geocodeData.address.county ||
           "Unknown Location"
         const countryName = geocodeData.address.country || ""
-        setLocationName(`${cityName}, ${countryName}`)
+        // setLocationName(`${cityName}, ${countryName}`)
 
         // Then fetch the weather data from Open-Meteo (free, no API key required)
         const weatherResponse = await fetch(
@@ -139,7 +139,7 @@ const WeatherSection = () => {
         ],
       }
       setWeatherData(mockData)
-      setLocationName(mockData.location)
+      // setLocationName(mockData.location)
       setLoading(false)
     }
 

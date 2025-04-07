@@ -116,7 +116,7 @@ const Header = () => {
           <Toggle
             handleChange={handleThemeToggle}
             isChecked={isDarkMode}
-            className="data-[state=checked]:bg-primary/90 data-[state=unchecked]:bg-foreground/20"
+            // className="data-[state=checked]:bg-primary/90 data-[state=unchecked]:bg-foreground/20"
           />
 
           <div className="flex gap-1.5">
@@ -165,7 +165,7 @@ const Header = () => {
         <Toggle
           handleChange={handleThemeToggle}
           isChecked={isDarkMode}
-          className="data-[state=checked]:bg-primary/90 data-[state=unchecked]:bg-foreground/20"
+          // className="data-[state=checked]:bg-primary/90 data-[state=unchecked]:bg-foreground/20"
         />
         <button
           onClick={toggleMenu}

@@ -345,7 +345,7 @@ const DualChat = () => {
         <div ref={chatBoxRef1} className="flex-grow overflow-y-auto p-4 space-y-3">
           {messages.map((message) => {
             const isUser1 = message.sender === "user1"
-            const isUser2 = message.sender === "user2"
+            // const isUser2 = message.sender === "user2"
             const isSystem = message.sender === "system"
 
             if (isSystem) {
@@ -483,7 +483,7 @@ const DualChat = () => {
         {/* Chat messages */}
         <div ref={chatBoxRef2} className="flex-grow overflow-y-auto p-4 space-y-3">
           {messages.map((message) => {
-            const isUser1 = message.sender === "user1"
+            // const isUser1 = message.sender === "user1"
             const isUser2 = message.sender === "user2"
             const isSystem = message.sender === "system"
 

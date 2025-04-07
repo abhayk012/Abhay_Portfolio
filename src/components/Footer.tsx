@@ -12,11 +12,8 @@ import {
   Mail,
   ArrowUp,
 } from "lucide-react";
-import ChatBot from "./ChatBot";
 import AichatBot from "./AichatBot";
 import { cn } from "@/lib/utils";
-import WeatherSection from "./WeatherSection";
-import WeatherFooter from "./WeatherFooter";
 import FooterWeather from "./WeatherFooter";
 
 gsap.registerPlugin(ScrollTrigger, Observer);
@@ -37,76 +34,86 @@ const Footer = () => {
     const circles = circlesRef.current;
 
     if (footer && content && links && copyright && circles) {
-      // Circle animations
-      gsap.fromTo(
-        circles.children,
-        { scale: 0, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 0.1,
-          duration: 1.5,
-          stagger: 0.2,
-          ease: "power3.out",
+      const ctx = gsap.context(() => {
+        // Animate background circles
+        gsap.fromTo(
+          circles.children,
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 0.1,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: footer,
+              start: "top bottom",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        // Animate footer content
+        gsap.from(content.children, {
           scrollTrigger: {
             trigger: footer,
-            start: "top bottom",
-            toggleActions: "play none none reverse",
+            start: "top 80%",
+            toggleActions: "play none none none",
           },
-        }
-      );
+          y: 40,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+        });
 
-      // Footer content animation
-      Observer.create({
-        target: footer,
-        type: "wheel,touch,scroll,pointer",
-        onEnter: () => {
-          gsap.context(() => {
-            // Content animation
-            gsap.from(content.children, {
-              y: 40,
-              opacity: 0,
-              duration: 1.2,
-              stagger: 0.15,
-              ease: "power4.out",
-            });
+        // Animate footer links
+        gsap.from(links.querySelectorAll(".footer-link"), {
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+          x: -20,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          delay: 0.4,
+          ease: "elastic.out(1, 0.5)",
+        });
 
-            // Links animation
-            gsap.from(links.querySelectorAll(".footer-link"), {
-              x: -20,
-              opacity: 0,
-              duration: 0.8,
-              stagger: 0.1,
-              delay: 0.4,
-              ease: "elastic.out(1, 0.5)",
-            });
+        // Animate social icons
+        gsap.from(links.querySelectorAll(".social-icon"), {
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+          scale: 0,
+          rotation: 180,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          delay: 0.8,
+          ease: "back.out(2)",
+        });
 
-            // Social icons animation
-            gsap.from(links.querySelectorAll(".social-icon"), {
-              scale: 0,
-              rotation: 180,
-              opacity: 0,
-              duration: 0.6,
-              stagger: 0.1,
-              delay: 0.8,
-              ease: "back.out(2)",
-            });
+        // Animate copyright
+        gsap.from(copyright.children, {
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          delay: 1.2,
+          ease: "power3.out",
+        });
+      }, footer);
 
-            // Copyright animation
-            gsap.from(copyright.children, {
-              y: 30,
-              opacity: 0,
-              duration: 1,
-              delay: 1.2,
-              ease: "power3.out",
-            });
-          });
-        },
-        once: true,
-      });
-
-      return () => {
-        Observer.getAll().forEach((observer) => observer.kill());
-      };
+      return () => ctx.revert();
     }
   }, []);
 
@@ -304,7 +311,7 @@ const Footer = () => {
       {/* Chat Components */}
       <AichatBot />
 
-      <style jsx global>{`
+      <style>{`
         @keyframes float {
           0%,
           100% {
